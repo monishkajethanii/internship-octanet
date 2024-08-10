@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="logo.jpeg">  <title>Lorem Company</title>
+  <style>
+    /* Resetting default browser styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #28a745;
+      padding: 20px;
+      text-align: center;
+      width: 100%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    header img {
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      vertical-align: middle;
+    }
+
+    header span {
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+      margin-left: 15px;
+      vertical-align: middle;
+    }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    form {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 30px 20px;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      animation: slideIn 2s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    form div:first-of-type {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #28a745;
+    }
+
+    form div:nth-of-type(2) {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    label {
+      font-size: 1.1rem;
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      transition: border-color 0.3s;
+    }
+
+    input[type="email"]:focus {
+      border-color: #28a745;
+      outline: none;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #218838;
+      transform: scale(1.05);
+    }
+
+    /* Custom Alert Box Styles */
+    .custom-alert {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      border-top: 5px solid #28a745;
+      opacity: 0;
+      transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+
+    .custom-alert.show {
+      display: block;
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+
+    .custom-alert .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #999;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .custom-alert .close-btn:hover {
+      color: #666;
+    }
+
+    .custom-alert .alert-message {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+    }
+
+    .overlay.show {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header span {
+        font-size: 1.5rem;
+      }
+
+      form div:first-of-type {
+        font-size: 1.5rem;
+      }
+
+      form div:nth-of-type(2) {
+        font-size: 1rem;
+      }
+
+      button {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header img {
+        width: 60px;
+        height: 60px;
+      }
+
+      header span {
+        font-size: 1.2rem;
+      }
+
+      form {
+        padding: 20px 15px;
+      }
+
+      form div:first-of-type {
+        font-size: 1.2rem;
+      }
+
+      form div:nth-of-type(2) {
+        font-size: 0.9rem;
+      }
+
+      label, input[type="email"], button {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.jpeg" alt="Company Logo">
+    <span>Lorem Company</span>
+  </header>
+
+  <div class="main-content">
+    <form>
+      <div>Get Marketing Tips Once a Week.</div>
+      <div>I know! I’m in the way. You look like someone who likes to try new marketing tactics once in a while. Subscribe and join thousands of marketers from abc, PowerBull, Lifebook, Orwel and more.</div>
+      <label for="email">Work Email *</label>
+      <input type="email" id="email" placeholder="Enter your work email" required>
+      <button type="button" onclick="showCustomAlert()">SUBSCRIBE TODAY!</button>
+    </form>
+  </div>
+
+  <!-- Custom Alert Box -->
+  <div class="overlay" id="overlay"></div>
+  <div class="custom-alert" id="customAlert">
+    <button class="close-btn" onclick="hideCustomAlert()">×</button>
+    <div class="alert-message">
+      <b>Thank you for subscribing!</b> <br><br>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni unde omnis iste accusantium optio dignissimos vel suscipit quisquam veritatis harum.
+    </div>
+  </div>
+
+  <script>
+    function showCustomAlert() {
+      document.getElementById('overlay').classList.add('show');
+      document.getElementById('customAlert').classList.add('show');
+    }
+
+    function hideCustomAlert() {
+      document.getElementById('overlay').classList.remove('show');
+      document.getElementById('customAlert').classList.remove('show');
+    }
+
+    // Close the alert box when clicking outside of it
+    document.getElementById('overlay').addEventListener('click', hideCustomAlert);
+  </script>
+</body>
+</html>
